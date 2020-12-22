@@ -14,7 +14,7 @@ const Intro = ({message, buttonLabel, buttonClick}) => {
                     {message}
                 </div>
                 <div className="introContainer__submitButton">
-                    <Button label={buttonLabel || "Start"} handleSubmit={buttonClick} />
+                    <Button label={buttonLabel || "Start"} handleClick={buttonClick} type="button" />
                 </div>
         </div>
     )

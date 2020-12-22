@@ -29,12 +29,13 @@ const LearningModule = ({setGameStatus, gameStatus}) => {
       });
   }
 
-  const handleSubmit=()=> {
+  const handleSubmit=(event)=> {
+    event.preventDefault();
     if(currentQuestionId < quizData.totalQuestions-1){
-        setIsLoading(true)
+        setIsLoading(true);
         setTimeout(function(){
           setCurrentQuestionId(currentQuestionId+1);
-          setIsLoading(false)
+          setIsLoading(false);
         }, 700 );
     } else if (!isComplete) {
       setIsComplete(true);
@@ -65,19 +66,19 @@ const LearningModule = ({setGameStatus, gameStatus}) => {
             </div>
           </div>
 
-          <div className="learningModule__answerArea">
+          <form className="learningModule__answerArea" onSubmit={ handleSubmit }>
             <div className="learningModule__selections">
               { possibleAnswers }
             </div>
             <div className="learningModule__submitButtonContainer">
-              <Button 
-                label="Submit" 
-                inactive 
+              <Button
+                type="submit"
+                label="Submit"
+                inactive
                 isLoading={isLoading}
-                handleSubmit={ handleSubmit } 
               />
             </div>
-          </div>
+          </form>
         </>
       }
       {isComplete &&

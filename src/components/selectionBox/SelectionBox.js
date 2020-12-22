@@ -2,15 +2,15 @@ import React from 'react';
 
 import './Styles.scss';
 
-const SelectionBox = (props) => {
+const SelectionBox = ({id, answer}) => {
   return(
     <div
       className="selectionBox"
-      id={"selectionBox" + props.id}
+      id={"selectionBox" + id}
     >
-      <img className="selectionBox__image" alt={props.answer.imageAlt} src={props.answer.image} />
-      <input className="selectionBox__checkbox" type="checkbox" />
-      <span className="selectionBox__text">{props.answer.text}</span>
+      <img className="selectionBox__image" alt={answer.imageAlt} src={answer.image} />
+      <input id={"answer" + id} className="selectionBox__checkbox" type="checkbox" />
+      <label htmlFor={"answer" + id} className="selectionBox__text">{answer.text}</label>
     </div>
    )
 }
