@@ -10,7 +10,32 @@
     border: solid 1px $elephant-paw;
     border-radius: 5px;
     text-align: center;
-    &__image {display: block; width: inherit; padding-bottom: 8px;  }
-    &__text {font-size: 1em; font-weight: 600;}
-    input { position: absolute; left: 4px;}
+
+    &--selected {
+      background-color: $morning-sky;
+    }
+
+    &--correct {
+      background-color: $grass-blade;
+    }
+
+    &--wrong {
+      background-color: $red-skittle;
+    }
+
+    &__image {
+      display: block;
+      width: inherit;
+      padding-bottom: 8px;
+    }
+
+    &__text {
+      font-size: 1em;
+      font-weight: 600;
+    }
+
+    &__checkbox {
+      position: absolute;
+      left: 4px;
+    }
   }

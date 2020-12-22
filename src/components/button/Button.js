@@ -17,7 +17,7 @@ const Button = ({ label, inactive, isLoading, customIcon, handleClick, type }) =
   }
 
   return (
-    <button type={type} className={"submitButton " + (inactive ? "submitButton--inactive" : "")} onClick={handleClick}>
+    <button type={type} className="submitButton" onClick={handleClick} disabled={inactive} >
       {label}
       <span className="submitButton__icon">
         {icon}

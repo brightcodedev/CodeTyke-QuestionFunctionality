@@ -11,7 +11,7 @@ const LearningModule = ({setGameStatus, gameStatus}) => {
   const [isComplete, setIsComplete] = React.useState(false);
   const [isLoading, setIsLoading] = React.useState(false);
 
-  let currentQuestion = quizData.questionArr ? quizData.questionArr[currentQuestionId]: {};
+  let currentQuestion = quizData.questionArr ? quizData.questionArr[currentQuestionId] : {};
   let possibleAnswers = currentQuestion.possibleAnswers || [];
 
   React.useEffect(() => {
@@ -31,14 +31,17 @@ const LearningModule = ({setGameStatus, gameStatus}) => {
 
   const handleNext = (event) => {
     event.preventDefault();
+    // if there are more questions, advance to the next set
     if(currentQuestionId < quizData.totalQuestions-1){
         setIsLoading(true);
         setTimeout(function(){
           setCurrentQuestionId(currentQuestionId+1);
           setIsLoading(false);
         }, 700 );
+      //else if there are no more questions & the quiz is not marked complete, mark the quiz complete
     } else if (!isComplete) {
       setIsComplete(true);
+      //else if the quiz is complete, reset the quiz
     } else {
       setCurrentQuestionId(0);
       setIsComplete(false);
