@@ -21,46 +21,4 @@
             display: none;
         }
     }
-  
-    &__answerArea {
-        background-color: white;
-        box-shadow: 0px 0px 20px -15px;
-        padding: 0px 0px 20px 0;
-        border-radius: 10px;
-        display: grid;
-        justify-content: center;
-        
-        @media only screen and (max-width: $tablet) {
-            border-radius: unset;
-        }
-
-        @media only screen and (max-width: $mobile) {
-            background-color: unset;
-            box-shadow: unset;
-        }
-
-    }
-
-    &__selections{ 
-        padding: 30px 0;
-        display: grid;
-        grid-auto-flow: column;
-        grid-gap: 10px;
-
-        @media only screen and (max-width: $tablet) {
-            grid-template-columns: 1fr 1fr;
-            grid-auto-flow: row;
-        }
-    }
-
-    &__submitButtonContainer {
-        height: 50px;
-        > * {
-            float: right;
-            @media only screen and (max-width: $mobile) {
-                float: unset;
-                margin: 10px;
-            }
-        }
-    }
 }

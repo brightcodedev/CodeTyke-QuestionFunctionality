@@ -2,15 +2,40 @@ import React from 'react';
 
 import './Styles.scss';
 
-const SelectionBox = (props) => {
+const SelectionBox = ({ answer, checked, handleChange, isSubmitted, allAnswersCorrect }) => {
+  const id = answer.id;
+
+  let selectionBoxClass = 'selectionBox';
+
+  if (checked) {
+    if (isSubmitted) {
+      if (allAnswersCorrect) {
+        selectionBoxClass += ' selectionBox--correct';
+      } else {
+        selectionBoxClass += ' selectionBox--wrong';
+        //how do I make this change temporary?
+      }
+    } else {
+      selectionBoxClass += ' selectionBox--selected';
+    }
+  };
+
   return(
     <div
-      className="selectionBox"
-      id={"selectionBox" + props.id}
+      className={selectionBoxClass}
+      id={"selectionBox" + id}
     >
-      <img className="selectionBox__image" alt={props.answer.imageAlt} src={props.answer.image} />
-      <input className="selectionBox__checkbox" type="checkbox" />
-      <span className="selectionBox__text">{props.answer.text}</span>
+      <img className="selectionBox__image" alt={answer.imageAlt} src={answer.image} />
+      <input
+        id={"answer" + id}
+        className="selectionBox__checkbox"
+        type="checkbox"
+        name={id}
+        value
+        checked={checked}
+        onChange={handleChange}
+      />
+      <label htmlFor={"answer" + id} className="selectionBox__text">{answer.text}</label>
     </div>
    )
 }

@@ -1,7 +1,6 @@
 import React from 'react';
 import ProgressBar from '../progressBar/ProgressBar';
-import SelectionBox from '../selectionBox/SelectionBox';
-import Button from '../button/Button';
+import AnswerArea from '../answerArea/AnswerArea'
 import Intro from '../intro/Intro';
 
 import './Styles.scss';
@@ -10,15 +9,16 @@ const LearningModule = ({setGameStatus, gameStatus}) => {
   const [currentQuestionId, setCurrentQuestionId] = React.useState(0);
   const [quizData, setQuizData] = React.useState({});
   const [isComplete, setIsComplete] = React.useState(false);
-  const [isLoading, setIsLoading] = React.useState(false)
+  const [isLoading, setIsLoading] = React.useState(false);
 
-  let currentQuestion = quizData.questionArr ? quizData.questionArr[currentQuestionId]: {};
+  let currentQuestion = quizData.questionArr ? quizData.questionArr[currentQuestionId] : {};
+  let possibleAnswers = currentQuestion.possibleAnswers || [];
 
-  React.useEffect(()=>{
+  React.useEffect(() => {
     getQuizData();
-  },[]);
+  }, []);
 
-  const getQuizData=()=>{
+  const getQuizData = () => {
     fetch("http://localhost:8080/problems")
       .then((res)=>{
         return res.json();
@@ -29,59 +29,44 @@ const LearningModule = ({setGameStatus, gameStatus}) => {
       });
   }
 
-  const handleSubmit=()=> {
+  const handleNext = (event) => {
+    event.preventDefault();
+    // if there are more questions, advance to the next set
     if(currentQuestionId < quizData.totalQuestions-1){
-        setIsLoading(true)
+        setIsLoading(true);
         setTimeout(function(){
           setCurrentQuestionId(currentQuestionId+1);
-          setIsLoading(false)
+          setIsLoading(false);
         }, 700 );
+      //else if there are no more questions & the quiz is not marked complete, mark the quiz complete
     } else if (!isComplete) {
       setIsComplete(true);
+      //else if the quiz is complete, reset the quiz
     } else {
       setCurrentQuestionId(0);
       setIsComplete(false);
       setGameStatus('new');
     }
   }
-  let possibleAnswers = [];
-  if(currentQuestion.possibleAnswers){
-    possibleAnswers = currentQuestion.possibleAnswers.map((answer, index) => {
-      return <SelectionBox id={index} key={index} answer={answer} />
-    })
-  }
 
   return (
     <div className="learningModule">
-      { currentQuestion.title && !isComplete &&
+      {currentQuestion.title && !isComplete &&
         <>
           <ProgressBar total={quizData.totalQuestions + 1} current={currentQuestion.id + 1} />
           <div className="learningModule__header">
             <div className="learningModule__title">
-              { currentQuestion.title }
+              {currentQuestion.title}
             </div>
             <div className="learningModule__subHeader">
-              { currentQuestion.additionalInfo }
+              {currentQuestion.additionalInfo}
             </div>
           </div>
-
-          <div className="learningModule__answerArea">
-            <div className="learningModule__selections">
-              { possibleAnswers }
-            </div>
-            <div className="learningModule__submitButtonContainer">
-              <Button 
-                label="Submit" 
-                inactive 
-                isLoading={isLoading}
-                handleSubmit={ handleSubmit } 
-              />
-            </div>
-          </div>
+          <AnswerArea isLoading={isLoading} possibleAnswers={possibleAnswers} handleNext={handleNext}/>
         </>
       }
       {isComplete &&
-        <Intro message="Congratulations. You've completed this level!" buttonLabel="Play again"  buttonClick={handleSubmit} />
+        <Intro message="Congratulations. You've completed this level!" buttonLabel="Play again"  buttonClick={handleNext} />
       }
     </div>
   )
