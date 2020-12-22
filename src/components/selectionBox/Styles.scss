@@ -13,4 +13,16 @@
     &__image {display: block; width: inherit; padding-bottom: 8px;  }
     &__text {font-size: 1em; font-weight: 600;}
     input { position: absolute; left: 4px;}
+
+    &--active {
+      background-color: $morning-sky;
+    }
+
+    &--correct {
+      background-color: $grass-blade;
+    }
+
+    &--incorrect {
+      background-color: $faded-fire;
+    }
   }

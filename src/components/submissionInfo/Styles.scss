@@ -1,0 +1,19 @@
+@import '../../styles/utils/colors';
+@import '../../styles/utils/breakpoints';
+
+.submissionInfo {
+  font-size: 1.7rem;
+  font-weight: bold;
+
+  &--correct {
+    color: $grass-blade;
+  }
+
+  &--incorrect {
+    color: $red-skittle;
+  }
+
+  @media only screen and (max-width: $mobile) {
+    font-size: 1.4rem;
+  }
+}
