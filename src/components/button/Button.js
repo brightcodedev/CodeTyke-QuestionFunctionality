@@ -1,6 +1,6 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faSync } from '@fortawesome/free-solid-svg-icons'
+import { faSync, faArrowRight } from '@fortawesome/free-solid-svg-icons'
 
 import './Styles.scss';
 
@@ -22,6 +22,7 @@ const Button = ({ label, inactive, isLoading, customIcon, handleSubmit }) => {
       <span className="submitButton__icon">
         {icon}
       </span>
+      
     </button>
   )
 }

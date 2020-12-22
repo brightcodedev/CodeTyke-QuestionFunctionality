@@ -59,7 +59,7 @@
             float: right;
             @media only screen and (max-width: $mobile) {
                 float: unset;
-                margin: 10px;
+                width: 100%;
             }
         }
     }

@@ -3,6 +3,8 @@ import ProgressBar from '../progressBar/ProgressBar';
 import SelectionBox from '../selectionBox/SelectionBox';
 import Button from '../button/Button';
 import Intro from '../intro/Intro';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faArrowRight } from '@fortawesome/free-solid-svg-icons'
 
 import './Styles.scss';
 
@@ -75,6 +77,7 @@ const LearningModule = ({setGameStatus, gameStatus}) => {
                 inactive 
                 isLoading={isLoading}
                 handleSubmit={ handleSubmit } 
+                customIcon={<FontAwesomeIcon icon={faArrowRight} />}
               />
             </div>
           </div>
