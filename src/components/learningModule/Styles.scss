@@ -53,14 +53,27 @@
         }
     }
 
-    &__submitButtonContainer {
-        height: 50px;
-        > * {
-            float: right;
-            @media only screen and (max-width: $mobile) {
-                float: unset;
-                width: 100%;
+    &__resultContainer {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        align-items: center;
+
+        @media only screen and (max-width: $mobile) {
+            flex-direction: column;
+        }
+
+        &__submitButtonContainer {
+            height: 50px;
+            > * {
+                float: right;
+                @media only screen and (max-width: $mobile) {
+                    float: unset;
+                    width: 100%;
+                }
             }
         }
     }
+
+    
 }
