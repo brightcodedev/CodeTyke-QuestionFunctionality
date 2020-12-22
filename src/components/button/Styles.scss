@@ -21,6 +21,7 @@
 
   &--inactive{
     background-color: $elephant-paw;
+    pointer-events: none;
   }
 
   &__icon {
