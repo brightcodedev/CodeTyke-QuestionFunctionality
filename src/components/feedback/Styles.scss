@@ -1,0 +1,23 @@
+@import '../../styles/utils/colors';
+@import '../../styles/utils/breakpoints';
+
+.feedback {
+  margin-right: 20px;
+  font-weight: 600;
+  font-size: 1.5em;
+  &__icon {
+    margin-right: 20px;
+  }
+  &__correct {
+    color: $grass-blade;
+    
+  }
+  &__incorrect {
+    color: $red-skittle;
+  }
+
+  @media only screen and (max-width: $mobile) {
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
+}
