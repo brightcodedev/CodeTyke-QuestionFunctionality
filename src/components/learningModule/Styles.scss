@@ -56,10 +56,12 @@
     &__submitButtonContainer {
         height: 50px;
         > * {
-            float: right;
+            // float: right;
             @media only screen and (max-width: $mobile) {
-                float: unset;
-                margin: 10px;
+                // float: unset;
+                // margin: 10px;
+                width: 100%;
+                text-align: center;
             }
         }
     }
