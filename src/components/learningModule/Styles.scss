@@ -55,12 +55,29 @@
 
     &__submitButtonContainer {
         height: 50px;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        
         > * {
             float: right;
             @media only screen and (max-width: $mobile) {
                 float: unset;
-                margin: 10px;
+                margin: 0px;
             }
+        }
+
+        .submissionInfo {
+            margin-right: 20px;
+            @media only screen and (max-width: $mobile) {
+                margin: 20px 0;
+            }
+        }
+
+        @media only screen and (max-width: $mobile) {
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
         }
     }
 }
