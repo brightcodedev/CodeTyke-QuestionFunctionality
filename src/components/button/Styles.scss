@@ -31,11 +31,10 @@
 
   &--inactive{
     background-color: $elephant-paw;
+    cursor: not-allowed;
   }
 
   &__icon {
-    // position: absolute;
-    // right: 1em;
     margin-left: 0.5em;
   }
 

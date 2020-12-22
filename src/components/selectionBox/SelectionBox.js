@@ -6,7 +6,18 @@ import './Styles.scss';
 const SelectionBox = (props) => {
   const [selected, setSelected] = useState(false);
   
-  const handleClick = () => setSelected(prevState => !prevState)
+  const handleClick = () => {
+    setSelected(prevState => !prevState);
+
+    const { id, choicesSelected, setChoicesSelected } = props;
+
+    if (choicesSelected.includes(id)) {
+      const newChoices = choicesSelected.filter(c => c !== id);
+      setChoicesSelected(newChoices);
+    } else {
+      setChoicesSelected(prevState => [...prevState, id]);
+    }
+  }
 
   return(
     <div

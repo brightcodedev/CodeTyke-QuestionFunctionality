@@ -12,7 +12,8 @@ const LearningModule = ({setGameStatus, gameStatus}) => {
   const [currentQuestionId, setCurrentQuestionId] = React.useState(0);
   const [quizData, setQuizData] = React.useState({});
   const [isComplete, setIsComplete] = React.useState(false);
-  const [isLoading, setIsLoading] = React.useState(false)
+  const [isLoading, setIsLoading] = React.useState(false);
+  const [choicesSelected, setChoicesSelected] = React.useState([]);
 
   let currentQuestion = quizData.questionArr ? quizData.questionArr[currentQuestionId]: {};
 
@@ -49,7 +50,7 @@ const LearningModule = ({setGameStatus, gameStatus}) => {
   let possibleAnswers = [];
   if(currentQuestion.possibleAnswers){
     possibleAnswers = currentQuestion.possibleAnswers.map((answer, index) => {
-      return <SelectionBox id={index} key={index} answer={answer} />
+      return <SelectionBox id={index} key={index} answer={answer} setChoicesSelected={setChoicesSelected} choicesSelected={choicesSelected}/>
     })
   }
 
@@ -74,9 +75,9 @@ const LearningModule = ({setGameStatus, gameStatus}) => {
             <div className="learningModule__submitButtonContainer">
               <Button 
                 label="Submit" 
-                inactive 
+                inactive={!choicesSelected.length}
                 isLoading={isLoading}
-                handleSubmit={ handleSubmit } 
+                handleSubmit={handleSubmit} 
                 customIcon={<FontAwesomeIcon icon={faArrowRight} />}
               />
             </div>
